@@ -1,6 +1,20 @@
-<h1>PERFIL</h1>
-<p><strong>Nombre:</strong> {{auth.profile?.name}}</p>
-<p><strong>Email:</strong> {{auth.profile?.email}}</p>
-<p><strong>Phone</strong> {{auth.profile?.phone}}</p>
-<h3>Historial</h3>
-<!-- <app-card [data]="post" *ngFor="let post of postsFiltrados"></app-card> -->
+<h1>Perfil</h1>
+<p><strong>Nombre:</strong> {{ auth.profile?.name }}</p>
+<p><strong>Email:</strong> {{ auth.profile?.email }}</p>
+<p><strong>Teléfono:</strong> {{ auth.profile?.phone }}</p>
+
+<h3>Historial de Compras</h3>
+<div *ngIf="purchases.length > 0; else noPurchases">
+    <ul>
+        <li *ngFor="let purchase of purchases">
+            <p><strong>Evento:</strong> {{ purchase.eventName }}</p>
+            <p><strong>Cantidad de boletos:</strong> {{ purchase.ticketQuantity }}</p>
+            <p><strong>Precio unitario:</strong> {{ purchase.unitPrice | currency }}</p>
+            <p><strong>Total:</strong> {{ purchase.totalPrice | currency }}</p>
+            <hr />
+        </li>
+    </ul>
+</div>
+<ng-template #noPurchases>
+    <p>No hay compras registradas.</p>
+</ng-template>

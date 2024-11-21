@@ -1,24 +1,22 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../services/database.service';
 import { ActivatedRoute } from '@angular/router';
-import { CardComponent } from '../../components/card/card.component';
-import { NgFor } from '@angular/common';
 import { CarritoService } from '../../services/carrito.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-view-event',
   standalone: true,
-  imports: [CardComponent, NgFor, FormsModule],
+  imports: [FormsModule],
   templateUrl: './view-event.component.html',
-  styleUrl: './view-event.component.scss'
+  styleUrls: ['./view-event.component.scss']
 })
 export class ViewEventComponent implements OnInit {
 
   id: any;
   data: any;
   selectedTickets: number = 1;
-  value = input<number>(0)
+
   constructor(
     public db: DatabaseService,
     public activatedRoute: ActivatedRoute,
@@ -35,14 +33,26 @@ export class ViewEventComponent implements OnInit {
   }
 
   addToCart(): void {
-    const ticketData = {
-      eventId: this.id,
-      eventName: this.data.name,
-      ticketPrice: this.data.ticket_price,
-      ticketQuantity: this.selectedTickets,
-      totalPrice: this.selectedTickets * this.data.ticket_price
-    };
+    // Verificar si 'data' está disponible antes de intentar acceder a sus propiedades
+    if (this.data) {
+      // Asegurarse de que la cantidad seleccionada no exceda la cantidad disponible
+      if (this.selectedTickets > this.data.ticket_quantity) {
+        alert("No hay suficientes boletos disponibles");
+        return;
+      }
 
-    this.cartService.addToCart(ticketData);
+      const ticketData = {
+        eventId: this.id,
+        eventName: this.data.name,
+        ticketPrice: this.data.ticket_price,
+        ticketQuantity: this.selectedTickets,
+        totalPrice: this.selectedTickets * this.data.ticket_price
+      };
+
+      // Añadir los datos del ticket al carrito
+      this.cartService.addToCart(ticketData);
+    } else {
+      alert("Error al cargar los datos del evento");
+    }
   }
 }

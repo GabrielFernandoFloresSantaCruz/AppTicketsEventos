@@ -1,10 +1,10 @@
 <h1>Evento</h1>
-<p><strong>Nombre:</strong> {{data.name}}</p>
-<p><strong>Fecha:</strong> {{data.date}}</p>
-<p><strong>Lugar:</strong> {{data.location}}</p>
-<p><strong>Descripcion:</strong> {{data.description}}</p>
-<p><strong>Precio por ticket:</strong> ${{data.ticket_price}}</p>
-<p><strong>Entradas disponibles:</strong> {{data.ticket_quantity}}</p>
+<p><strong>Nombre:</strong> {{data?.name}}</p>
+<p><strong>Fecha:</strong> {{data?.date}}</p>
+<p><strong>Lugar:</strong> {{data?.location}}</p>
+<p><strong>Descripcion:</strong> {{data?.description}}</p>
+<p><strong>Precio por ticket:</strong> ${{data?.ticket_price}}</p>
+<p><strong>Entradas disponibles:</strong> {{data?.ticket_quantity}}</p>
 
 <div>
   <label for="ticketQuantity">Cantidad de boletos:</label>
@@ -13,7 +13,7 @@
     id="ticketQuantity"
     [(ngModel)]="selectedTickets"
     [min]="1"
-    [max]="data.ticket_quantity"
+    [max]="data?.ticket_quantity"
   />
   <button (click)="addToCart()">Añadir al carrito</button>
 </div>

@@ -43,7 +43,7 @@ export class HomeComponent {
 
   filterByTag(tag: string) {
     if (tag === '') {
-      this.filteredEvents = this.events; //se despliegan todos los eventos
+      this.filteredEvents = this.events;
     } else {
       this.filteredEvents = this.events.filter(event =>
         event.tags && event.tags.includes(tag) //comparamos si el evento tiene la etiqueta con lo descrito en el html
