@@ -12,7 +12,6 @@ import { RouterLink } from '@angular/router';
 })
 export class BuyCheckComponent implements OnDestroy {
   paymentForm: FormGroup;
-  isPurchaseComplete = false;
 
   constructor(private fb: FormBuilder, private cartService: CarritoService) {
     this.paymentForm = this.fb.group({

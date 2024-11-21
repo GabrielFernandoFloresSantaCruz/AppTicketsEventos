@@ -17,6 +17,5 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('datos para card', this.data)
-    //console.log('data', this.data)
   }
 }
