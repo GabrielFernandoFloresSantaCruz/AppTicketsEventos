@@ -8,7 +8,8 @@
     <button (click)="filterByTag('deporte')">Deporte</button>
     <button (click)="filterByTag('gastronomía')">Gastronomía</button>
     <button (click)="filterByTag('cine')">Cine</button>
-</div>
+    <button (click)="filterByTag('culturales')">Culturales</button>
+  </div>
 
 <div class="events-list">
   <app-card [data]="event" *ngFor="let event of filteredEvents"></app-card>
