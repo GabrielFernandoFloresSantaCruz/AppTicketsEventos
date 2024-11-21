@@ -1,27 +1,28 @@
 <div class="container-fluid">
     <div class="row">
-    <div class="col-12">
-        <form [formGroup]="paymentForm" (ngSubmit)="onPaymentSubmit()">
-            <div class="form-control-group">
-                <label for="cardName">Nombre en la Tarjeta</label>
-                <input id="cardName" formControlName="cardName" class="form-control" type="text">
-            </div>
-            <div class="form-control-group">
-                <label for="cardNumber">Número de Tarjeta</label>
-                <input id="cardNumber" formControlName="cardNumber" class="form-control" type="text" placeholder="1234 5678 9012 3456">
-            </div>
-            <div class="form-control-group">
-                <label for="expirationDate">Fecha de Expiración</label>
-                <input id="expirationDate" formControlName="expirationDate" class="form-control" type="text" placeholder="MM/AA">
-            </div>
-            <div class="form-control-group">
-                <label for="cvv">CVV</label>
-                <input id="cvv" formControlName="cvv" class="form-control" type="text">
-            </div>
-            <button type="submit" class="btn btn-primary">
-                Confirmar Pago
-            </button>
-        </form>
+        <div class="col-12">
+            <form [formGroup]="paymentForm" (ngSubmit)="onPaymentSubmit()">
+                <div class="form-control-group">
+                    <label for="cardName">Nombre en la Tarjeta</label>
+                    <input id="cardName" formControlName="cardName" class="form-control" type="text" />
+                </div>
+                <div class="form-control-group">
+                    <label for="cardNumber">Número de Tarjeta</label>
+                    <input id="cardNumber" formControlName="cardNumber" class="form-control" type="text" placeholder="1234 5678 9012 3456"/>
+                </div>
+                <div class="form-control-group">
+                    <label for="expirationDate">Fecha de Expiración</label>
+                    <input id="expirationDate" formControlName="expirationDate" class="form-control" type="text" placeholder="MM/AA"/>
+                </div>
+                <div class="form-control-group">
+                    <label for="cvv">CVV</label>
+                    <input id="cvv" formControlName="cvv" class="form-control" type="text" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Confirmar Pago
+                </button>
+            </form>
+            <a [routerLink]="['/home']" class="btn btn-primary">Volver al inicio</a>
+        </div>
     </div>
-</div>
 </div>

@@ -3,5 +3,17 @@
 <p><strong>Fecha:</strong> {{data.date}}</p>
 <p><strong>Lugar:</strong> {{data.location}}</p>
 <p><strong>Descripcion:</strong> {{data.description}}</p>
-<p><strong>Precio del ticket:</strong> {{data.ticket_price}}</p>
-<p><strong>Cantidad de boletos:</strong> {{data.ticket_quantity}}</p>
+<p><strong>Precio por ticket:</strong> ${{data.ticket_price}}</p>
+<p><strong>Entradas disponibles:</strong> {{data.ticket_quantity}}</p>
+
+<div>
+  <label for="ticketQuantity">Cantidad de boletos:</label>
+  <input
+    type="number"
+    id="ticketQuantity"
+    [(ngModel)]="selectedTickets"
+    [min]="1"
+    [max]="data.ticket_quantity"
+  />
+  <button (click)="addToCart()">Añadir al carrito</button>
+</div>

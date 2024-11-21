@@ -1,1 +1,12 @@
-<p>carrito works!</p>
+<h1>{{ this.title }}</h1>
+
+<ul>
+    <app-cart-item [data]="item" *ngFor="let item of cartData">{{ item.eventName }}</app-cart-item>
+</ul>
+
+<p>Total entradas: {{ totalTickets }}</p>
+<p>Precio total: ${{ totalPrice }}</p>
+
+<div>
+    <button [routerLink]="['/buy-check']" (click)="saveTotal()">Comprar entradas</button>
+</div>
