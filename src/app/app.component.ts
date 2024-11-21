@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { Component, OnDestroy } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CardComponent } from './components/card/card.component';
+import { BtnComponent } from './components/btn/btn.component';
+import { CommonModule, NgFor } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [ CommonModule,
+    RouterLink, RouterOutlet, CardComponent, BtnComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'appEventos';
+  isMenuOpen = true;
+
+  constructor(){
+    console.log('constructor app component');
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 }

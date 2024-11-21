@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="form-control-group">
+            <label for="">Nombre</label>
+            <input formControlName="name" class="form-control" type="text">
+          </div>
+          <div class="form-control-group">
+            <label for="">Teléfono</label>
+            <input formControlName="phone" class="form-control" type="text">
+          </div>
+          <div class="form-control-group">
+            <label for="">Email</label>
+            <input formControlName="email" class="form-control" type="text">
+          </div>
+          <div class="form-control-group">
+            <label for="">Password</label>
+            <input formControlName="password" class="form-control" type="text">
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

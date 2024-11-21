@@ -1,0 +1,15 @@
+<h1>{{ this.title }}</h1>
+
+<div class="filter-buttons">
+    <button (click)="filterByTag('')">Todos</button> <!-- (click) es el equivalente a hacer un add event listener y la accion esta llamando a la funcion filtrar por tag -->
+    <button (click)="filterByTag('danza')">Danza</button>
+    <button (click)="filterByTag('arte')">Arte</button>
+    <button (click)="filterByTag('música')">Música</button>
+    <button (click)="filterByTag('deporte')">Deporte</button>
+    <button (click)="filterByTag('gastronomía')">Gastronomía</button>
+    <button (click)="filterByTag('cine')">Cine</button>
+</div>
+
+<div class="events-list">
+  <app-card [data]="event" *ngFor="let event of filteredEvents"></app-card>
+</div>
