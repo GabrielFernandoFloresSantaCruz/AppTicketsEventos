@@ -1,0 +1,22 @@
+.form-control{
+    margin-bottom: 20px;
+}
+.btn{
+    display: flex;
+    margin-top: 30px;
+    width: 100%;
+    background-color: var(--rojo);
+    display: flex; 
+    padding: 21px 109px;
+    justify-content: center;
+    align-items: center;    
+    border: none;
+    /*gap: 10px;*/
+
+}
+.row{
+    margin-top: 20px;
+}
+h1{
+    margin-bottom: 20px;
+}

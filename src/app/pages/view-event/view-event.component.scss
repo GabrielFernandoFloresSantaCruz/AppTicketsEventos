@@ -1,0 +1,17 @@
+.ticket-stock{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ticket-stock button{
+    width: 100%;
+    background-color: var(--rojo);
+    color: #fff;
+    display: flex; 
+    padding: 21px 109px;
+    justify-content: center;
+    align-items: center;    
+    border: none;
+    border-radius: 0.375rem;
+}

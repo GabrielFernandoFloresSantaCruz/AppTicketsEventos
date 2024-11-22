@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+}
+:root{
+    /*Paleta cromática*/
+    --rojo: #f83758;
+    --negro: #000;
+
+    /*Tamaños tipográficos*/
+    
+
+    /* Espaciadores */
+  --spacing-small: 8px;
+  --spacing-medium: 16px;
+  --spacing-large: 24px;
+  --spacing-xlarge: 32px;
+}
+body{
+    width: 375px;
+}
+.btn-primary{
+    --bs-btn-bg: #f83758;
+}
