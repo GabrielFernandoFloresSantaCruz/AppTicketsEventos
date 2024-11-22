@@ -28,6 +28,7 @@ export class CarritoService {
   removeItem(item: any): void {
     this.cart = this.cart.filter((cartItem) => cartItem !== item);
     this.updateLocalStorage();
+    location.reload();
   }
 
   private updateLocalStorage(): void {
