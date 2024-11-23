@@ -3,7 +3,7 @@
 }
 .btn{
     display: flex;
-    margin-top: 30px;
+    margin-top: 50px;
     width: 100%;
     background-color: var(--rojo);
     display: flex; 
@@ -11,7 +11,6 @@
     justify-content: center;
     align-items: center;    
     border: none;
-    /*gap: 10px;*/
 
 }
 .row{
@@ -19,4 +18,13 @@
 }
 h1{
     margin-bottom: 20px;
+}
+.form-control-group label{
+    margin-bottom: 10px;
+}
+.form-control-group .form-control{
+    border: 1px solid black;
+    padding: 10px 8px;
+    background-color: var(--grislight);
+    
 }

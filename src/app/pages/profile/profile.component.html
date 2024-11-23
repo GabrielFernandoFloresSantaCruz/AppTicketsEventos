@@ -1,8 +1,12 @@
 <h1>Perfil</h1>
+<div class="info">
+<img src="" alt="profile">
 <p><strong>Nombre:</strong> {{ auth.profile?.name }}</p>
 <p><strong>Email:</strong> {{ auth.profile?.email }}</p>
 <p><strong>Teléfono:</strong> {{ auth.profile?.phone }}</p>
+</div>
 
+<div class="purchase-container">
 <h3>Historial de Compras</h3>
 <div *ngIf="purchases.length > 0; else noPurchases">
     <ul>
@@ -18,3 +22,4 @@
 <ng-template #noPurchases>
     <p>No hay compras registradas.</p>
 </ng-template>
+</div>

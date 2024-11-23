@@ -3,14 +3,14 @@
 }
 .btn{
     display: flex;
-    margin-top: 60px;
+    margin-top: 50px;
     width: 100%;
     background-color: var(--rojo);
-    padding: 21px 109px;
+    padding: 21px ;
     justify-content: center;
     align-items: center;    
     border: none;
-    /*gap: 10px;*/
+    font-size: 20px;
 
 }
 .row{
@@ -18,4 +18,13 @@
 }
 h1{
     margin-bottom: 20px;
+}
+.form-control-group label{
+    margin-bottom: 10px;
+}
+.form-control-group .form-control{
+    border: 1px solid black;
+    padding: 10px 8px;
+    background-color: var(--grislight);
+    
 }
