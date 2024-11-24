@@ -1,6 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
+            <h1>Checkout</h1>
             <form [formGroup]="paymentForm" (ngSubmit)="onPaymentSubmit()">
                 <div class="form-control-group">
                     <label for="cardName">Nombre en la Tarjeta</label>
@@ -18,11 +19,13 @@
                     <label for="cvv">CVV</label>
                     <input id="cvv" formControlName="cvv" class="form-control" type="text" />
                 </div>
+                <div class="buttons">
                 <button type="submit" class="btn btn-primary">
                     Confirmar Pago
                 </button>
-            </form>
-            <a [routerLink]="['/home']" class="btn btn-primary">Volver al inicio</a>
+                <a [routerLink]="['/home']" class="btn btn-primary">Volver al inicio</a>
+        </div>
+        </form>
         </div>
     </div>
 </div>

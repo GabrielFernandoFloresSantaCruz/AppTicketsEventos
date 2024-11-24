@@ -3,10 +3,10 @@
 <ul>
     <app-cart-item [data]="item" *ngFor="let item of cartData">{{ item.eventName }}</app-cart-item>
 </ul>
-
+<div class="tickets">
 <p>Total entradas: {{ totalTickets }}</p>
 <p>Precio total: ${{ totalPrice }}</p>
-
+</div>
 <div>
     <button [routerLink]="['/buy-check']" (click)="saveTotal()">Comprar entradas</button>
 </div>
