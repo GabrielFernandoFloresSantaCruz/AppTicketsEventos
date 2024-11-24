@@ -17,19 +17,19 @@ export class AppComponent implements OnInit {
   isMenuOpen = true;
 
   constructor(private auth: AuthService, private router: Router) {
-    localStorage.clear();
-    console.log('AppComponent constructor ejecutado');
+/*     localStorage.clear();
+ */    console.log('AppComponent constructor ejecutado');
   }
 
   ngOnInit(): void {
-    localStorage.clear();
-  
-    if (!this.auth.isLogued) {
+/*     localStorage.clear();
+ */  
+    /* if (!this.auth.isLogued) {
       console.log('No hay sesión activa. Redirigiendo al login...');
       this.router.navigateByUrl('/log-in');
     } else {
       console.log('Sesión activa:', this.auth.profile);
-    }
+    } */
   }
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

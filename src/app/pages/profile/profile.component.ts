@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { DatabaseService } from '../../services/database.service';
 import { Router } from '@angular/router';
@@ -11,19 +11,23 @@ import { CommonModule, NgFor } from '@angular/common';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   purchases: any[] = [];
 
   constructor(
-    public auth: AuthService, 
-    public db: DatabaseService, 
-    private router: Router // Añadido el Router
+    public auth: AuthService,
+    public db: DatabaseService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.loadPurchases();
+  }
+
+  private loadPurchases(): void {
     if (!this.auth.isLogued || !this.auth.profile?.id) {
       console.log('Usuario no autenticado. Redirigiendo al login...');
-      this.router.navigateByUrl('/log-in'); // Usa el router para redirigir
+      this.router.navigateByUrl('/log-in');
     } else {
       this.db
         .getDocumentsByField('purchases', 'userId', this.auth.profile.id)

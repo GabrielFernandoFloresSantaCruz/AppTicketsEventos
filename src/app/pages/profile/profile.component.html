@@ -13,7 +13,7 @@
         <li *ngFor="let purchase of purchases">
             <p><strong>Evento:</strong> {{ purchase.eventName }}</p>
             <p><strong>Cantidad de boletos:</strong> {{ purchase.ticketQuantity }}</p>
-            <p><strong>Precio unitario:</strong> {{ purchase.unitPrice | currency }}</p>
+            <p><strong>Precio unitario:</strong> {{ purchase.unitPrice | currency }}</p> <!-- currency sirve para formatear las cantidades con comas y puntos decimales -->
             <p><strong>Total:</strong> {{ purchase.totalPrice | currency }}</p>
             <hr />
         </li>

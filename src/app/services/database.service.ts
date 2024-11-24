@@ -33,6 +33,13 @@ export class DatabaseService {
     return collectionData(collectionRef, { idField: 'id' }); // Retorna los datos incluyendo el ID
   }
 
+  // Recuperar un documento por su ID como Promesa
+  async getDocumentByIdAsPromise(collectionName: string, documentId: string): Promise<any> {
+    const docRef = doc(this.firestore, `${collectionName}/${documentId}`);
+    const snapshot = await getDoc(docRef);
+    return snapshot.exists() ? snapshot.data() : null;
+  }
+
   // Método para agregar un documento a una colección en Firestore
   addFirestoreDocument(collectionName: string, data: any): Promise<any> {
     const collectionRef = collection(this.firestore, collectionName);
