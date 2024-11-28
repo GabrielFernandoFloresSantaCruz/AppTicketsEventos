@@ -26,8 +26,6 @@ export class ProfileComponent implements OnInit {
 
   private loadPurchases(): void {
     if (!this.auth.isLogued || !this.auth.profile?.id) {
-      console.log('Usuario no autenticado. Redirigiendo al login...');
-      this.router.navigateByUrl('/log-in');
     } else {
       this.db
         .getDocumentsByField('purchases', 'userId', this.auth.profile.id)

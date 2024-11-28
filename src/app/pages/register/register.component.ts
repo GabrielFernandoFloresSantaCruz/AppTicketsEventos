@@ -24,15 +24,16 @@ export class RegisterComponent {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['+591', []],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      image: ['profile.png']
     });
   }
 
   onLogin() {
     if (this.loginForm.valid) {
       console.log('formulario valido', this.loginForm.value);
-      const {email, password } = this.loginForm.value
-      this.auth.registerUser(email, password , this.loginForm.value)
+      const {email, password, image } = this.loginForm.value
+      this.auth.registerUser(email, password , { ...this.loginForm.value, image } )
         .then(
           (res: any) => { console.log('then 1', res) },
           (res: any) => { console.log('callback2', res) },
