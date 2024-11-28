@@ -1,28 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: black;
 }
-:root{
-    /*Paleta cromática*/
-    --rojo: #f83758;
-    --negro: #000;
-    --gris: #A8A8A9;
-    --grislight: #F3F3F3;
 
-    
+:root {
+    /* Color */
+    --primary-color: #f83758;
+    --secondary-color: #A8A8A9;
+    --background-light: #F3F3F3;
+    --text-dark: #000;
+    --white: #FFF;
+    --blue: #007BFF;
 
-    /* Espaciadores */
     --spacing-small: 8px;
     --spacing-medium: 16px;
     --spacing-large: 24px;
-    --spacing-xlarge: 32px;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-body{
-    width: 375px;
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--primary-color);
+    padding: var(--spacing-medium);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
 }
+
+.featured-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-medium);
+}
+
+.featured-banner {
+    background-color: var(--primary-color);
+    color: var(--primary-color);
+    padding: var(--spacing-large);
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/* Trending Products */
+.trending-section{
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-large);
+    box-shadow: var(--box-shadow);
+}
+
+.trending-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: var(--spacing-small);
+    text-align: center;
+}
+
+
+
+.trending-card img {
+
+    border-radius: var(--border-radius);
+}
+
 .btn-primary{
-    --bs-btn-bg: #f83758;
-}
+    background-color: var(--primary-color) !important;
+    border: none;
+
+} 
+
