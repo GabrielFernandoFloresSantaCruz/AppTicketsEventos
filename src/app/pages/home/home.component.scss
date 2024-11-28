@@ -18,8 +18,15 @@
     border-radius: 8px;
     border: none;
     padding: 4px 8px;
+
 }
 h1{
-    color: red;
+    color: var(--primary-color);
     margin: 20px 0;
+}
+
+.filter-buttons button:hover{
+    background-color: var(--primary-color);
+    color:  var(--white);
+
 }
