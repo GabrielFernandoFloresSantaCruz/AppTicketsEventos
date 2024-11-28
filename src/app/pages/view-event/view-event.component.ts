@@ -33,9 +33,7 @@ export class ViewEventComponent implements OnInit {
   }
 
   addToCart(): void {
-    // Verificar si 'data' está disponible antes de intentar acceder a sus propiedades
     if (this.data) {
-      // Asegurarse de que la cantidad seleccionada no exceda la cantidad disponible
       if (this.selectedTickets > this.data.ticket_quantity) {
         alert("No hay suficientes boletos disponibles");
         return;
@@ -48,8 +46,6 @@ export class ViewEventComponent implements OnInit {
         ticketQuantity: this.selectedTickets,
         totalPrice: this.selectedTickets * this.data.ticket_price
       };
-
-      // Añadir los datos del ticket al carrito
       this.cartService.addToCart(ticketData);
     } else {
       alert("Error al cargar los datos del evento");

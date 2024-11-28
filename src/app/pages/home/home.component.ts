@@ -46,7 +46,7 @@ export class HomeComponent {
       this.filteredEvents = this.events;
     } else {
       this.filteredEvents = this.events.filter(event =>
-        event.tags && event.tags.includes(tag) //comparamos si el evento tiene la etiqueta con lo descrito en el html
+        event.tags && event.tags.includes(tag)
       );
     }
   }

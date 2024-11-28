@@ -35,7 +35,6 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // Cargar datos del carrito y calcular el total
     this.cartData = this.cartService.getCartItems();
     this.totalPrice = this.cartData.reduce((sum, item) => sum + item.totalPrice, 0);
     console.log('Contenido del carrito:', this.cartData);
@@ -54,7 +53,6 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
     }
     console.log('Formulario válido.');
 
-    // Verificar si el usuario está logueado
     if (!this.authService.isLogued || !this.authService.profile) {
       alert('Debes iniciar sesión para completar la compra.');
       return;
@@ -74,8 +72,7 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
 
         console.log('Obteniendo datos del evento con ID:', item.eventId);
 
-        // Paso 1: Obtener datos del evento desde Firestore
-        const eventData: any = await this.db.getDocumentByIdAsPromise('eventos', item.eventId);
+        const eventData: any = await this.db.getDocumentByIdAsPromise('eventos', item.eventId); // se manejo promise porque habia un error que no cargaba los datos del usuario y con promise se soluciono se tenia que esperar hasta que le llegen los datos para continuar
         console.log('Datos del evento obtenidos:', eventData);
 
         if (!eventData || eventData.ticket_quantity === undefined) {
@@ -84,7 +81,6 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
           return;
         }
 
-        // Paso 2: Verificar disponibilidad de boletos
         const remainingTickets = eventData.ticket_quantity - item.ticketQuantity;
         if (remainingTickets < 0) {
           console.error('No hay suficientes boletos disponibles:', eventData.ticket_quantity);
@@ -93,12 +89,10 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
         }
         console.log(`Boletos restantes calculados: ${remainingTickets}`);
 
-        // Paso 3: Actualizar boletos disponibles en Firestore
         console.log(`Actualizando boletos disponibles para el evento: ${eventData.name}`);
         await this.db.updateFirestoreDocument('eventos', item.eventId, { ticket_quantity: remainingTickets });
         console.log(`Boletos actualizados correctamente para el evento: ${eventData.name}`);
 
-        // Paso 4: Registrar la compra en Firestore
         const purchaseData = {
           userId,
           eventId: item.eventId,
@@ -111,10 +105,8 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
         console.log('Compra registrada correctamente en Firestore.');
       }
 
-      // Confirmación de éxito
       alert('Pago confirmado con éxito. Detalles guardados en el historial.');
 
-      // Limpiar el carrito y el localStorage
       this.cartService.clearCart();
       localStorage.removeItem('cart');
       localStorage.removeItem('totalPrice');

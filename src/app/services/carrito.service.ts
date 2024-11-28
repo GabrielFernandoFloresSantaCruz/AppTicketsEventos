@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CarritoService {
-  private cartKey = 'cartItems'; // Clave para LocalStorage
+  private cartKey = 'cartItems';
   private cart: any[] = [];
 
   constructor() {
-    this.loadCartFromLocalStorage(); // Cargar datos del LocalStorage al iniciar el servicio
+    this.loadCartFromLocalStorage();
   }
 
   addToCart(item: any): void {
     this.cart.push(item);
-    this.updateLocalStorage(); // Actualizar LocalStorage cada vez que se agrega un item
+    this.updateLocalStorage();
   }
 
   getCartItems(): any[] {
