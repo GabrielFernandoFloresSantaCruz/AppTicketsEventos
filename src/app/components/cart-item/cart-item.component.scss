@@ -1,0 +1,22 @@
+.cart-item h5{
+    margin-bottom: 20px;
+}
+.cart-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item button {
+    width: 10vw;
+    background-color: var(--primary-color) !important;
+    padding: 10px ; 
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 0.375rem;
+}
