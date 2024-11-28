@@ -4,15 +4,14 @@
 .cart-item {
     margin-bottom: 20px;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
 }
 
 .cart-item button {
-    width: 10vw;
+    width: 100px;
     background-color: var(--primary-color) !important;
     padding: 10px ; 
     border: none;
