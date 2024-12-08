@@ -1,0 +1,22 @@
+<h1>Administración de eventos</h1>
+<a routerLink="/events-form/create" class="btn btn-primary">Crear nuevo</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Evento</th>
+            <th scope="col">Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let event of events">
+            <td>{{event.name}}</td>
+            <td>
+                <div class="button-crud">
+                    <a routerLink="/events-form/read/{{event.id}}" class="btn btn-outline-primary">Ver</a>
+                    <a routerLink="/events-form/update/{{event.id}}" class="btn btn-outline-primary">Editar</a>
+                    <a routerLink="/events-form/delete/{{event.id}}" class="btn btn-outline-primary">Eliminar</a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

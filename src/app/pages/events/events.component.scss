@@ -1,0 +1,28 @@
+h1{
+    color: var(--primary-color);
+    margin: 20px 0;
+}
+.btn-outline-primary{
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.btn-outline-primary:hover  {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+.btn-outline-primary:active  {
+    transform: scale(0.95);
+}
+.table{
+    margin-top: 20px;
+
+}
+.table thead th{
+    color: var(--primary-color);
+    
+}
+.button-crud {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
