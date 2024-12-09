@@ -22,16 +22,15 @@ export class EventsFormComponent {
     private fb: FormBuilder
   ){
     this.eventForm = this.fb.group({
-      title: ['',[Validators.required]],
+      name: ['',[Validators.required]],
       description: ['',[Validators.required]],
-      price: ['',[Validators.required]],
-      discount:['',[Validators.required]],
-      highlight: ['',[Validators.required]],
+       ticket_price: ['',[Validators.required]],
+      /*discount:['',[Validators.required]],
+      highlight: ['',[Validators.required]], */
       image:['',[Validators.required]]
     });
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('jueputaid', this.id)
     if (this.activatedRoute.snapshot.paramMap.get('action')){
       this.action = this.activatedRoute.snapshot.paramMap.get('action')
     }
@@ -45,13 +44,13 @@ export class EventsFormComponent {
         console.log('evento seleccionado', res);
         if(res){
           this.data = res;
-          const {title, description, price, discount, highlight, image} = this.data;
+          const {name, description, ticket_price, /*discount, highlight, */ image} = this.data;
           this.eventForm.setValue({
-            title: title,
+            name: name,
             description: description,
-            price: price,
-            discount: discount,
-            highlight: highlight,
+            ticket_price: ticket_price,
+            /*discount: discount,
+            highlight: highlight, */
             image: image
           })
         }
