@@ -1,19 +1,18 @@
 <h1>Evento</h1>
 
-<div *ngIf="action === 'read'">
-    <div class="card" style="width: 100%;">
+<div class="card" style="width: 100%;" *ngIf="action === 'read'">
         <img class="card-img-top" src="{{data.image}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{data.name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{data.price}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Bs. {{data.ticket_price}}</h6>
           <p class="card-text">{{data.description}}</p>
-          <div>
+          <!-- <div>
             <p>{{data.discount}}</p>
             <p>{{data.highlight}}</p>
-          </div>
+          </div> -->
         </div>
-      </div>
 </div>
+
 <div *ngIf="action !== 'read'">
 <form [formGroup]="eventForm" (ngSubmit)="crud()">
     <div class="form-control-group">
@@ -22,24 +21,24 @@
     </div>
     <div class="form-control-group">
         <label for="">Título</label>
-        <input formControlName="title"  class="form-control" type="text">
+        <input formControlName="name"  class="form-control" type="text">
     </div>
     <div class="form-control-group">
         <label for="">Precio</label>
-        <input formControlName="price"  class="form-control" type="text">
+        <input formControlName="ticket_price"  class="form-control" type="text">
     </div>
     <div class="form-control-group">
         <label for="">Descripción</label>
         <input formControlName="description"  class="form-control" type="text">
     </div>
-    <div class="form-control-group">
+    <!--<div class="form-control-group">
         <label for="">Descuento</label>
         <input formControlName="discount"  class="form-control" type="text">
     </div>
     <div class="form-control-group">
         <label for="">Destacado</label>
         <input formControlName="highlight"  class="form-control" type="text">
-    </div>
+    </div> -->
     <button type="submit" class="btn btn-primary">{{ action === 'delete' ? 'Eliminar' : 'Enviar' }}</button>
 </form>
 </div>
