@@ -72,7 +72,7 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
 
         console.log('Obteniendo datos del evento con ID:', item.eventId);
 
-        const eventData: any = await this.db.getDocumentByIdAsPromise('eventos', item.eventId); // se manejo promise porque habia un error que no cargaba los datos del usuario y con promise se soluciono se tenia que esperar hasta que le llegen los datos para continuar
+        const eventData: any = await this.db.getDocumentByIdAsPromise('eventos', item.eventId);
         console.log('Datos del evento obtenidos:', eventData);
 
         if (!eventData || eventData.ticket_quantity === undefined) {
@@ -93,12 +93,21 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
         await this.db.updateFirestoreDocument('eventos', item.eventId, { ticket_quantity: remainingTickets });
         console.log(`Boletos actualizados correctamente para el evento: ${eventData.name}`);
 
+        const discountApplied = eventData.discount && eventData.percentage > 0;
+        const originalPrice = item.ticketPrice;
+        const discountedPrice = discountApplied
+          ? originalPrice * (1 - eventData.percentage / 100)
+          : originalPrice;
+
         const purchaseData = {
           userId,
           eventId: item.eventId,
           eventName: item.eventName,
           ticketQuantity: item.ticketQuantity,
-          totalPrice: item.totalPrice,
+          totalPrice: discountedPrice * item.ticketQuantity, // Precio total considerando el descuento
+          originalPrice, // Precio original del boleto
+          discount: discountApplied, // Indica si se aplicó descuento
+          percentage: discountApplied ? eventData.percentage : 0, // Porcentaje de descuento
         };
         console.log('Guardando compra en Firestore:', purchaseData);
         await this.db.addFirestoreDocument('purchases', purchaseData);

@@ -1,12 +1,15 @@
-<h1>{{ this.title }}</h1>
+<h1>{{ title }}</h1>
 
 <ul>
-    <app-cart-item [data]="item" *ngFor="let item of cartData">{{ item.eventName }}</app-cart-item>
+  <app-cart-item [data]="item" *ngFor="let item of cartData"></app-cart-item>
 </ul>
+
 <div class="tickets">
-<p>Total entradas: {{ totalTickets }}</p>
-<p>Precio total: ${{ totalPrice }}</p>
+  <p>Total entradas: {{ totalTickets }}</p>
+  <p *ngIf="hasDiscount()">Precio total con descuento: {{ totalPrice | currency }}</p>
+  <p *ngIf="!hasDiscount()">Precio total: {{ totalPrice | currency }}</p>
 </div>
+
 <div>
-    <button [routerLink]="['/buy-check']" (click)="saveTotal()">Comprar entradas</button>
+  <button [routerLink]="['/buy-check']" (click)="saveTotal()">Comprar entradas</button>
 </div>

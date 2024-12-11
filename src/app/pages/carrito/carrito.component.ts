@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf, CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CartItemComponent } from '../../components/cart-item/cart-item.component';
 
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [NgFor, RouterLink, CartItemComponent],
+  imports: [NgIf, NgFor, RouterLink, CartItemComponent, CurrencyPipe], // Se asegura de incluir CurrencyPipe
   templateUrl: './carrito.component.html',
-  styleUrl: './carrito.component.scss'
+  styleUrl: './carrito.component.scss',
 })
-export class CarritoComponent {
+export class CarritoComponent implements OnInit {
   title: string = 'Carrito de Compras';
   cartData: any[] = [];
   totalTickets: number = 0;
@@ -20,6 +20,10 @@ export class CarritoComponent {
   constructor(public cartService: CarritoService) {}
 
   ngOnInit(): void {
+    this.loadCartData();
+  }
+
+  loadCartData(): void {
     this.cartData = this.cartService.getCartItems();
     this.calculateTotals();
   }
@@ -29,11 +33,15 @@ export class CarritoComponent {
     this.totalPrice = this.cartData.reduce((sum, item) => sum + item.totalPrice, 0);
   }
 
+  hasDiscount(): boolean {
+    return this.cartData.some(item => item.discount);
+  }
+
   removeItem(item: any): void {
     this.cartService.removeItem(item);
-    this.cartData = this.cartService.getCartItems();
-    this.calculateTotals();
+    this.loadCartData(); // Recarga el carrito y recalcula los totales
   }
+
   saveTotal(): void {
     localStorage.setItem('totalPrice', JSON.stringify(this.totalPrice));
   }

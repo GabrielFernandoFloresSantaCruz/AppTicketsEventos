@@ -1,25 +1,30 @@
 <h1>Perfil</h1>
 <div class="info">
-<img src="assets/{{ auth.profile?.image }}" alt="profile">
-<p><strong>Nombre:</strong> {{ auth.profile?.name }}</p>
-<p><strong>Email:</strong> {{ auth.profile?.email }}</p>
-<p><strong>Teléfono:</strong> {{ auth.profile?.phone }}</p>
+    <img src="assets/{{ auth.profile?.image }}" alt="profile">
+    <p><strong>Nombre:</strong> {{ auth.profile?.name }}</p>
+    <p><strong>Email:</strong> {{ auth.profile?.email }}</p>
+    <p><strong>Teléfono:</strong> {{ auth.profile?.phone }}</p>
 </div>
 
 <div class="purchase-container">
-<h3>Historial de Compras</h3>
-<div *ngIf="purchases.length > 0; else noPurchases">
-    <ul>
-        <li *ngFor="let purchase of purchases">
-            <p><strong>Evento:</strong> {{ purchase.eventName }}</p>
-            <p><strong>Cantidad de boletos:</strong> {{ purchase.ticketQuantity }}</p>
-            <p><strong>Precio unitario:</strong> {{ purchase.unitPrice | currency }}</p> <!-- currency sirve para formatear las cantidades con comas y puntos decimales -->
-            <p><strong>Total:</strong> {{ purchase.totalPrice | currency }}</p>
-            <hr />
-        </li>
-    </ul>
-</div>
-<ng-template #noPurchases>
-    <p>No hay compras registradas.</p>
-</ng-template>
+    <h3>Historial de Compras</h3>
+    <div *ngIf="purchases.length > 0; else noPurchases">
+        <ul>
+            <li *ngFor="let purchase of purchases">
+                <p><strong>Evento:</strong> {{ purchase.eventName }}</p>
+                <p><strong>Cantidad de boletos:</strong> {{ purchase.ticketQuantity }}</p>
+                <p><strong>Precio original unitario:</strong> {{ purchase.originalPrice | currency }}</p>
+                <p *ngIf="purchase.discount">
+                    <strong>Porcentaje de descuento:</strong> {{ purchase.percentage }}%
+                </p>
+                <p><strong>Precio unitario con descuento:</strong> {{ purchase.unitPrice | currency }}</p>
+                <p><strong>Total sin descuento:</strong> {{ purchase.originalTotalPrice | currency }}</p>
+                <p><strong>Total con descuento:</strong> {{ purchase.totalPrice | currency }}</p>
+                <hr />
+            </li>
+        </ul>
+    </div>
+    <ng-template #noPurchases>
+        <p>No hay compras registradas.</p>
+    </ng-template>
 </div>

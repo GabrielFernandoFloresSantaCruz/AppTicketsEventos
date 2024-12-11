@@ -26,11 +26,22 @@ export class ProfileComponent implements OnInit {
 
   private loadPurchases(): void {
     if (!this.auth.isLogued || !this.auth.profile?.id) {
+      alert('Debes iniciar sesión para ver tu perfil.');
+      this.router.navigate(['/login']);
     } else {
       this.db
         .getDocumentsByField('purchases', 'userId', this.auth.profile.id)
         .subscribe((data) => {
-          this.purchases = data;
+          this.purchases = data.map((purchase: any) => ({
+            eventName: purchase.eventName,
+            ticketQuantity: purchase.ticketQuantity,
+            originalPrice: purchase.originalPrice,
+            discount: purchase.discount || false,
+            percentage: purchase.percentage || 0,
+            unitPrice: purchase.unitPrice || purchase.originalPrice, // Precio final unitario
+            originalTotalPrice: purchase.ticketQuantity * purchase.originalPrice, // Total sin descuento
+            totalPrice: purchase.totalPrice, // Total con descuento aplicado
+          }));
         });
     }
   }
