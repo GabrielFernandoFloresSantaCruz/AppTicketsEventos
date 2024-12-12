@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BtnComponent } from '../btn/btn.component';
 import { RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [BtnComponent, RouterLink],
+  imports: [BtnComponent, RouterLink, NgIf],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })

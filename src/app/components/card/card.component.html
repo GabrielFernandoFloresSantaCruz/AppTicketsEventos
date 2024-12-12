@@ -1,10 +1,15 @@
-<div class="card" style="width: 100%;"  >
-    <img class="card-img-top" src="{{data.image}}" alt="Card image cap" > 
+<div class="card" style="width: 100%;">
+    <h3 *ngIf="data.discount"> <strong>Evento destacado</strong> </h3>
+    <img class="card-img-top" src="{{data.image}}" alt="Card image cap">
     <div class="card-body">
-        <h5 style="cursor: pointer;"   class="card-title" routerLink="/view-event/{{data.id}}">{{data.name}}</h5>
+        <h5 style="cursor: pointer;" class="card-title" routerLink="/view-event/{{data.id}}">
+            {{data.name}}
+        </h5>
         <p class="card-text">Fecha: {{data.date}}</p>
-        <p class="card-text">Ubicacion: {{data.location}}</p>
+        <p class="card-text">Ubicación: {{data.location}}</p>
         <p class="card-text">Precio: ${{data.ticket_price}}</p>
+        <p *ngIf="data.discount"> <strong>Descuento: {{data.percentage}}%</strong> </p>
+        
         <a href="#" routerLink="/view-event/{{data.id}}" class="btn btn-primary">Ver más</a>
     </div>
 </div>

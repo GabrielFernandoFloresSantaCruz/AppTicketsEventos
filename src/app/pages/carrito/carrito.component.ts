@@ -7,7 +7,7 @@ import { CartItemComponent } from '../../components/cart-item/cart-item.componen
 @Component({
   selector: 'app-carrito',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink, CartItemComponent, CurrencyPipe], // Se asegura de incluir CurrencyPipe
+  imports: [NgIf, NgFor, RouterLink, CartItemComponent, CurrencyPipe],
   templateUrl: './carrito.component.html',
   styleUrl: './carrito.component.scss',
 })

@@ -44,6 +44,8 @@ export class HomeComponent {
   filterByTag(tag: string) {
     if (tag === '') {
       this.filteredEvents = this.events;
+    } else if (tag === 'destacados') {
+      this.filteredEvents = this.events.filter(event => event.discount === true);
     } else {
       this.filteredEvents = this.events.filter(event =>
         event.tags && event.tags.includes(tag)
