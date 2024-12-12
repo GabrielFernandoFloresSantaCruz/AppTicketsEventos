@@ -33,34 +33,23 @@ export class ViewEventComponent implements OnInit {
   }
 
   addToCart(): void {
-    if (this.data) {
-      // Validar si la cantidad de boletos seleccionados excede la cantidad disponible
-      if (this.selectedTickets > this.data.ticket_quantity) {
-        alert("No hay suficientes boletos disponibles");
-        return;
-      }
-
-      // Determinar el precio unitario (con descuento o sin descuento)
-      const discountedPrice = this.data.discount
-        ? this.data.ticket_price * (1 - this.data.percentage / 100)
-        : this.data.ticket_price;
-
-      // Crear el objeto con los datos necesarios para el carrito
-      const ticketData = {
-        eventId: this.id,
-        eventName: this.data.name,
-        ticketPrice: discountedPrice,
-        originalPrice: this.data.ticket_price, // Guardar el precio original para mostrarlo en el carrito
-        ticketQuantity: this.selectedTickets,
-        totalPrice: discountedPrice * this.selectedTickets,
-        discount: this.data.discount, // Indicar si el evento tiene descuento
-        percentage: this.data.percentage // Guardar el porcentaje de descuento
-      };
-
-      // Agregar al carrito
-      this.cartService.addToCart(ticketData);
-    } else {
-      alert("Error al cargar los datos del evento");
+    if (!this.selectedTickets || this.selectedTickets < 1 || this.selectedTickets > this.data?.ticket_quantity) {
+      alert('Cantidad de boletos no válida.');
+      return;
     }
+  
+    const cartItem = {
+      eventId: this.data.id,
+      eventName: this.data.name,
+      ticketPrice: this.data.ticket_price, // Asegura que sea el precio original
+      ticketQuantity: this.selectedTickets,
+      totalPrice: this.data.ticket_price * this.selectedTickets, // Calcula el total con el precio original
+      discount: this.data.discount,
+      percentage: this.data.percentage || 0,
+      originalPrice: this.data.ticket_price // Guarda el precio original
+    };
+  
+    this.cartService.addToCart(cartItem);
+    alert('Boletos añadidos al carrito.');
   }
 }

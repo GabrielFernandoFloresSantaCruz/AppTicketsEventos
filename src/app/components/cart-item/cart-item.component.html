@@ -1,14 +1,14 @@
 <div class="cart-item">
   <h5>{{ data.eventName }}</h5>
   <p *ngIf="data.discount">
-    <span>Precio original: ${{ data.originalPrice | currency }}</span>
-    <span>Precio con descuento: ${{ data.ticketPrice | currency }}</span>
+    <span>Precio original: {{ data.originalPrice | currency }}</span>
+    <span>Precio con descuento: {{ (data.originalPrice * (1 - data.percentage / 100)) | currency }}</span>
     <span>(-{{ data.percentage }}%)</span>
   </p>
   <p *ngIf="!data.discount">
-    Precio unitario: ${{ data.ticketPrice | currency }}
+    Precio unitario: {{ data.ticketPrice | currency }}
   </p>
   <p>Cantidad: {{ data.ticketQuantity }}</p>
-  <p>Subtotal: ${{ data.totalPrice | currency }}</p>
+  <p>Subtotal: {{ data.totalPrice | currency }}</p>
   <button (click)="removeItem()">Eliminar</button>
 </div>
