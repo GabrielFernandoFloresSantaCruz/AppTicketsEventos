@@ -32,16 +32,23 @@ export class ProfileComponent implements OnInit {
       this.db
         .getDocumentsByField('purchases', 'userId', this.auth.profile.id)
         .subscribe((data) => {
-          this.purchases = data.map((purchase: any) => ({
-            eventName: purchase.eventName,
-            ticketQuantity: purchase.ticketQuantity,
-            originalPrice: purchase.originalPrice,
-            discount: purchase.discount || false,
-            percentage: purchase.percentage || 0,
-            unitPrice: purchase.unitPrice || purchase.originalPrice, // Precio final unitario
-            originalTotalPrice: purchase.ticketQuantity * purchase.originalPrice, // Total sin descuento
-            totalPrice: purchase.totalPrice, // Total con descuento aplicado
-          }));
+          this.purchases = data.map((purchase: any) => {
+            const discountMultiplier = purchase.discount
+              ? 1 - purchase.percentage / 100
+              : 1;
+            const unitPrice = purchase.originalPrice * discountMultiplier;
+  
+            return {
+              eventName: purchase.eventName,
+              ticketQuantity: purchase.ticketQuantity,
+              originalPrice: purchase.originalPrice,
+              discount: purchase.discount || false,
+              percentage: purchase.percentage || 0,
+              unitPrice,
+              originalTotalPrice: purchase.ticketQuantity * purchase.originalPrice,
+              totalPrice: purchase.totalPrice || unitPrice * purchase.ticketQuantity,
+            };
+          });
         });
     }
   }

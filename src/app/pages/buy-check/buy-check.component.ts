@@ -93,19 +93,22 @@ export class BuyCheckComponent implements OnInit, OnDestroy {
         await this.db.updateFirestoreDocument('eventos', item.eventId, { ticket_quantity: remainingTickets });
         console.log(`Boletos actualizados correctamente para el evento: ${eventData.name}`);
         
+        // Aplica descuento si corresponde
         const discountMultiplier = item.discount && item.percentage > 0 ? (1 - item.percentage / 100) : 1;
-        const originalPrice = item.ticketPrice; // El precio original del boleto
-        const discountedPrice = originalPrice * discountMultiplier; // Aplica el descuento solo una vez
-        
+        const originalPrice = item.originalPrice; // Precio original del boleto
+        const discountedPrice = originalPrice * discountMultiplier; // Precio unitario con descuento
+        const totalPriceWithDiscount = discountedPrice * item.ticketQuantity; // Total con descuento
+
+        // Genera los datos para guardar en Firestore
         const purchaseData = {
-          userId,
-          eventId: item.eventId,
-          eventName: item.eventName,
-          ticketQuantity: item.ticketQuantity,
-          totalPrice: discountedPrice * item.ticketQuantity, // Precio total con descuento correcto
-          originalPrice, // Precio original del boleto
-          discount: item.discount, // Indica si se aplicó descuento
-          percentage: item.percentage, // Porcentaje de descuento
+            userId,
+            eventId: item.eventId,
+            eventName: item.eventName,
+            ticketQuantity: item.ticketQuantity,
+            totalPrice: totalPriceWithDiscount, // Precio total con descuento
+            originalPrice, // Precio original del boleto
+            discount: item.discount, // Indica si se aplicó descuento
+            percentage: item.percentage, // Porcentaje de descuento
         };
 
         console.log('Guardando compra en Firestore:', purchaseData);
