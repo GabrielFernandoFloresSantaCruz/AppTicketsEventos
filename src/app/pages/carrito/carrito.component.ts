@@ -30,7 +30,7 @@ export class CarritoComponent implements OnInit {
 
   calculateTotals(): void {
     this.totalTickets = this.cartData.reduce((sum, item) => sum + item.ticketQuantity, 0);
-    this.totalPrice = this.cartData.reduce((sum, item) => sum + item.totalPrice, 0); // Usa `totalPrice` directamente
+    this.totalPrice = this.cartData.reduce((sum, item) => sum + item.totalPrice, 0); 
   }
 
   hasDiscount(): boolean {
@@ -39,7 +39,7 @@ export class CarritoComponent implements OnInit {
 
   removeItem(item: any): void {
     this.cartService.removeItem(item);
-    this.loadCartData(); // Recarga el carrito y recalcula los totales
+    this.loadCartData(); 
   }
 
   saveTotal(): void {

@@ -41,12 +41,12 @@ export class ViewEventComponent implements OnInit {
     const cartItem = {
       eventId: this.data.id,
       eventName: this.data.name,
-      ticketPrice: this.data.ticket_price, // Asegura que sea el precio original
+      ticketPrice: this.data.ticket_price, 
       ticketQuantity: this.selectedTickets,
-      totalPrice: this.data.ticket_price * this.selectedTickets, // Calcula el total con el precio original
+      totalPrice: this.data.ticket_price * this.selectedTickets,
       discount: this.data.discount,
       percentage: this.data.percentage || 0,
-      originalPrice: this.data.ticket_price // Guarda el precio original
+      originalPrice: this.data.ticket_price
     };
   
     this.cartService.addToCart(cartItem);

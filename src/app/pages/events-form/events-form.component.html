@@ -1,44 +1,67 @@
-<h1>Nuevo Evento</h1>
+<h1>  {{ action === 'create' ? 'Nuevo Evento' : (action === 'read' ? 'Ver Evento' : 'Editar Evento') }}</h1>
 
 <div class="card" style="width: 100%;" *ngIf="action === 'read'">
-        <img class="card-img-top" src="{{data.image}}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{data.name}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Bs. {{data.ticket_price}}</h6>
-          <p class="card-text">{{data.description}}</p>
-          <div>
-            <p>Descuento: {{data.percentage}} %</p>
-          </div>
+    <img class="card-img-top" [src]="data.image" alt="Imagen del evento">
+    <div class="card-body">
+        <h5 class="card-title">{{ data.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Bs. {{ data.ticket_price }}</h6>
+        <p class="card-text">{{ data.description }}</p>
+        <p>Ubicación: {{ data.location }}</p>
+        <p>Fecha: {{ data.date }}</p>
+        <p>Cantidad de boletos: {{ data.ticket_quantity }}</p>
+        <div>
+            <p>Descuento: {{ data.discount ? data.percentage + '%' : 'No aplica' }}</p>
         </div>
+        <p>Tags: {{ data.tags?.join(', ') }}</p>
+    </div>
 </div>
 
 <div *ngIf="action !== 'read'">
-<form [formGroup]="eventForm" (ngSubmit)="crud()">
-    <div class="form-control-group">
-        <label for="">URL Imagen</label>
-        <input formControlName="image"  class="form-control" type="text">
-    </div>
-    <div class="form-control-group">
-        <label for="">Título</label>
-        <input formControlName="name"  class="form-control" type="text">
-    </div>
-    <div class="form-control-group">
-        <label for="">Precio</label>
-        <input formControlName="ticket_price"  class="form-control" type="text">
-    </div>
-    <div class="form-control-group">
-        <label for="">Descripción</label>
-        <input formControlName="description"  class="form-control" type="text">
-    </div>
-    <div class="checkbox">
-        <label class="form-check-label" for="">Descuento</label>
-        <input formControlName="discount" class="form-check-input" type="checkbox">
-        <small>Al agregar el descuento el evento se marcará como destacado</small>
-    </div>
-    <div class="form-control-group" *ngIf="eventForm.get('discount')?.value === true">
-        <label for="">Porcentaje</label>
-        <input formControlName="percentage"  class="form-control" type="text">
-    </div>
-    <button type="submit" class="btn btn-primary">{{ action === 'delete' ? 'Eliminar' : 'Enviar' }}</button>
-</form>
+    <form [formGroup]="eventForm" (ngSubmit)="crud()">
+        <div class="form-control-group">
+            <label for="image">URL Imagen</label>
+            <input id="image" formControlName="image" class="form-control" type="text">
+        </div>
+        <div class="form-control-group">
+            <label for="name">Título</label>
+            <input id="name" formControlName="name" class="form-control" type="text">
+        </div>
+        <div class="form-control-group">
+            <label for="ticket_price">Precio</label>
+            <input id="ticket_price" formControlName="ticket_price" class="form-control" type="text">
+        </div>
+        <div class="form-control-group">
+            <label for="description">Descripción</label>
+            <input id="description" formControlName="description" class="form-control" type="text">
+        </div>
+        <div class="form-control-group">
+            <label for="date">Fecha</label>
+            <input id="date" formControlName="date" class="form-control" type="date">
+        </div>
+        <div class="form-control-group">
+            <label for="location">Ubicación</label>
+            <input id="location" formControlName="location" class="form-control" type="text">
+        </div>
+        <div class="form-control-group">
+            <label for="ticket_quantity">Cantidad de boletos</label>
+            <input id="ticket_quantity" formControlName="ticket_quantity" class="form-control" type="number">
+        </div>
+        <div class="checkbox">
+            <label class="form-check-label" for="discount">Descuento</label>
+            <input id="discount" formControlName="discount" class="form-check-input" type="checkbox">
+            <small>Al agregar el descuento, el evento se marcará como destacado</small>
+        </div>
+        <div class="form-control-group" *ngIf="eventForm.get('discount')?.value === true">
+            <label for="percentage">Porcentaje</label>
+            <input id="percentage" formControlName="percentage" class="form-control" type="text">
+        </div>
+        <div class="form-control-group">
+            <label for="tags">Tags</label>
+            <input id="tags" formControlName="tags" class="form-control" type="text" placeholder="Escribe las etiquetas separadas por comas">
+            <small class="form-text text-muted">
+                Tags disponibles: danza, arte, música, deporte, gastronomía, cine, culturales
+            </small>
+        </div>
+        <button type="submit" class="btn btn-primary">{{ action === 'delete' ? 'Eliminar' : 'Enviar' }}</button>
+    </form>
 </div>

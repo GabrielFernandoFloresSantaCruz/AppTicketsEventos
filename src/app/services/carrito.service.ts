@@ -20,7 +20,7 @@ export class CarritoService {
       ...item,
       originalPrice: item.ticketPrice,
       ticketPrice: discountedPrice,
-      totalPrice: discountedPrice * item.ticketQuantity, // Correcto cálculo del subtotal
+      totalPrice: discountedPrice * item.ticketQuantity,
     };
 
     this.cart.push(ticketData);
@@ -28,7 +28,7 @@ export class CarritoService {
   }
 
   getCartItems(): any[] {
-    return this.cart; // Devuelve directamente los ítems sin recalcular
+    return this.cart;
   }
 
   clearCart(): void {
@@ -37,7 +37,7 @@ export class CarritoService {
   }
 
   removeItem(item: any): void {
-    this.cart = this.cart.filter((cartItem) => cartItem.eventId !== item.eventId); // Se usa `eventId` para evitar eliminar incorrectamente elementos iguales
+    this.cart = this.cart.filter((cartItem) => cartItem.eventId !== item.eventId);
     this.updateLocalStorage();
   }
 
