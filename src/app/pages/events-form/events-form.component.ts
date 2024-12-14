@@ -54,7 +54,7 @@ export class EventsFormComponent {
               date: date || '',
               location: location || '',
               ticket_quantity: ticket_quantity || '',
-              tags: tags?.join(', ') || ''
+              tags: tags ? tags.join(', ') : ''
             });
           }
         });
@@ -63,7 +63,9 @@ export class EventsFormComponent {
 
   crud() {
     if (this.eventForm.valid) {
-      const formData = { ...this.eventForm.value };
+      const formData = { ...this.eventForm.value, 
+        tags: this.eventForm.value.tags.split(',').map((tag: string) => tag.trim())
+      };
 
       if (this.action === 'create') {
         this.db.addFirestoreDocument('eventos', formData);
