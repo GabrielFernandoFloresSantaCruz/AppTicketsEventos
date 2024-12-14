@@ -24,9 +24,9 @@ export class EventsFormComponent {
     this.eventForm = this.fb.group({
       name: ['',[Validators.required]],
       description: ['',[Validators.required]],
-       ticket_price: ['',[Validators.required]],
-      /*discount:['',[Validators.required]],
-      highlight: ['',[Validators.required]], */
+      ticket_price: ['',[Validators.required]],
+      discount:['',[Validators.required]],
+      percentage:['',[]],
       image:['',[Validators.required]]
     });
 
@@ -44,13 +44,13 @@ export class EventsFormComponent {
         console.log('evento seleccionado', res);
         if(res){
           this.data = res;
-          const {name, description, ticket_price, /*discount, highlight, */ image} = this.data;
+          const {name, description, ticket_price, discount, percentage, image} = this.data;
           this.eventForm.setValue({
             name: name,
             description: description,
             ticket_price: ticket_price,
-            /*discount: discount,
-            highlight: highlight, */
+            discount: discount,
+            percentage: percentage,
             image: image
           })
         }

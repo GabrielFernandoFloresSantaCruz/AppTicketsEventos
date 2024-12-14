@@ -1,4 +1,4 @@
-<h1>Evento</h1>
+<h1>Nuevo Evento</h1>
 
 <div class="card" style="width: 100%;" *ngIf="action === 'read'">
         <img class="card-img-top" src="{{data.image}}" alt="Card image cap">
@@ -6,10 +6,9 @@
           <h5 class="card-title">{{data.name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">Bs. {{data.ticket_price}}</h6>
           <p class="card-text">{{data.description}}</p>
-          <!-- <div>
-            <p>{{data.discount}}</p>
-            <p>{{data.highlight}}</p>
-          </div> -->
+          <div>
+            <p>Descuento: {{data.percentage}} %</p>
+          </div>
         </div>
 </div>
 
@@ -31,14 +30,15 @@
         <label for="">Descripción</label>
         <input formControlName="description"  class="form-control" type="text">
     </div>
-    <!--<div class="form-control-group">
-        <label for="">Descuento</label>
-        <input formControlName="discount"  class="form-control" type="text">
+    <div class="checkbox">
+        <label class="form-check-label" for="">Descuento</label>
+        <input formControlName="discount" class="form-check-input" type="checkbox">
+        <small>Al agregar el descuento el evento se marcará como destacado</small>
     </div>
-    <div class="form-control-group">
-        <label for="">Destacado</label>
-        <input formControlName="highlight"  class="form-control" type="text">
-    </div> -->
+    <div class="form-control-group" *ngIf="eventForm.get('discount')?.value === true">
+        <label for="">Porcentaje</label>
+        <input formControlName="percentage"  class="form-control" type="text">
+    </div>
     <button type="submit" class="btn btn-primary">{{ action === 'delete' ? 'Eliminar' : 'Enviar' }}</button>
 </form>
 </div>

@@ -5,3 +5,30 @@ h1{
 form button{
     margin-top: 20px;
 }
+.form-control{
+    margin-bottom: 20px;
+}
+.form-control-group label{
+    margin-bottom: 10px;
+}
+.form-control-group .form-control{
+    border: 1px solid black;
+    padding: 10px 8px;
+    background-color: var(--grislight);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+.checkbox{
+    margin: 20px 0;
+}
+.checkbox small{
+    color: #979494;
+    margin-left: 20px;
+}
+.form-check-input{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border: 1px solid black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
